@@ -8,8 +8,31 @@
 import SwiftUI
 
 struct Aula04_2: View {
+    @State var nome: String = ""
+    @State var artista: String = ""
+    @State var capa: String = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            VStack{
+                AsyncImage(url: URL(string: capa)) { image in
+                    image
+                        .resizable()
+                    
+                } placeholder: {
+                    Color.black
+                }
+                .frame(width: 250, height: 250)
+                
+                Text("\(nome)\n\(artista)")
+                    .foregroundColor(.white)
+                    .font(.system(size: 15))
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+            }
+        }
+        .background(LinearGradient(gradient:
+        Gradient(colors: [Color("verder"), Color("izcuro")]),
+        startPoint: .top, endPoint: .center))
     }
 }
 

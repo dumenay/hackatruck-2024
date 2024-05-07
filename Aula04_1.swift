@@ -28,75 +28,81 @@ struct Aula04_1: View {
         Song(id:10, name:"Musica", artist:"Artista", capa:"link")
     ]
     var body: some View {
-        ZStack{
-            ScrollView{
-                VStack{
-                    Spacer()
-                    AsyncImage(url: URL(string: "https://i.pinimg.com/736x/7f/34/a0/7f34a09fee02bf4b8bdaa745416c210d.jpg" )) { image in
-                        image
-                            .resizable()
-                        
-                    } placeholder: {
-                        Color.black
-                    }
-                    .frame(width: 200, height: 200)
-                    Spacer()
-                }
-                Spacer()
-                VStack{
-                    HStack(){
-                        Text("batidao stronda 2009")
-                            .foregroundColor(.white)
-                            .font(.system(size: 30))
-                            .fontWeight(.bold)
-                            .offset(x: 10)
+        NavigationStack{
+            ZStack{
+                ScrollView{
+                    VStack{
                         Spacer()
-                    }
-                    HStack{
-                        AsyncImage(url: URL(string: "https://conteudo.imguol.com.br/c/esporte/60/2022/08/03/iran-santana-o-luva-de-pedreiro-1659552598392_v2_450x600.jpg.webp" )) { image in
+                        AsyncImage(url: URL(string: "https://i.pinimg.com/736x/7f/34/a0/7f34a09fee02bf4b8bdaa745416c210d.jpg" )) { image in
                             image
                                 .resizable()
                             
                         } placeholder: {
                             Color.black
                         }
-                        .frame(width: 30, height: 30)
-                            .offset(x: -115, y: -5)
-                        Text("diabodevil666")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.bold)
-                            .offset(x: -110, y: -5)
+                        .frame(width: 200, height: 200)
+                        Spacer()
                     }
-                }
-                VStack(spacing: -3){
-                    ForEach(arrayMusicas) { musica in
-                        NavigationLink(destination: Aula04_1()){
-                            HStack{
-                                AsyncImage(url: URL(string: musica.capa)) { image in
-                                    image
-                                        .resizable()
+                    Spacer()
+                    VStack{
+                        HStack(){
+                            Text("batidao stronda 2009")
+                                .foregroundColor(.white)
+                                .font(.system(size: 30))
+                                .fontWeight(.bold)
+                                .offset(x: 10)
+                            Spacer()
+                        }
+                        HStack{
+                            AsyncImage(url: URL(string: "https://conteudo.imguol.com.br/c/esporte/60/2022/08/03/iran-santana-o-luva-de-pedreiro-1659552598392_v2_450x600.jpg.webp" )) { image in
+                                image
+                                    .resizable()
+                            } placeholder: {
+                                Color.black
+                            }
+                            .frame(width: 30, height: 30)
+                            .offset(x: -115, y: -5)
+                            
+                            Text("diabodevil666")
+                                .foregroundColor(.white)
+                                .font(.system(size: 15))
+                                .fontWeight(.bold)
+                                .offset(x: -110, y: -5)
+                        }
+                    }
+                    VStack(spacing: 10){
+                        ForEach(arrayMusicas) { musica in
+                            NavigationLink(destination: Aula04_2(nome: musica.name, artista: musica.artist, capa: musica.capa)){
+                                HStack(){
+                                    AsyncImage(url: URL(string: musica.capa)) { image in
+                                        image
+                                            .resizable()
+                                        
+                                    } placeholder: {
+                                        Color.black
+                                    }
+                                    .frame(width: 60, height: 60)
                                     
-                                } placeholder: {
-                                    Color.black
+                                    Text("\(musica.name)\n\(musica.artist)")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                        .fontWeight(.bold)
+                                        .multilineTextAlignment(.leading)
+                                    Spacer()
+                                    Image(systemName: "ellipsis")
+                                        .rotationEffect(Angle(degrees: 90))
+                                        .foregroundColor(.white)
+                                        .padding(10)
                                 }
-                                .frame(width: 60, height: 60)
-                                
-                                Text("\(musica.name)\n\(musica.artist)")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 15))
-                                    .fontWeight(.bold)
-                                    .multilineTextAlignment(.leading)
-                                Spacer()
                             }
                         }
                     }
                 }
             }
+            .background(LinearGradient(gradient:
+                                        Gradient(colors: [Color("verder"), Color("izcuro")]),
+                                       startPoint: .top, endPoint: .center))
         }
-        .background(LinearGradient(gradient:
-        Gradient(colors: [Color("verder"), Color("izcuro")]),
-        startPoint: .top, endPoint: .center))
     }
 }
 
